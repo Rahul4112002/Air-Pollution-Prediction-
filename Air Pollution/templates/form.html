@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Air Pollution Prediction</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+</head>
+<body>
+  <div class="bg-white pb-6 sm:pb-8 lg:pb-12">
+    <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+      <header class="mb-4 flex items-center justify-between py-4 md:py-8">
+        <!-- logo - start -->
+        <a
+          href="/"
+          class="inline-flex items-center gap-2.5 text-2xl font-bold text-black md:text-3xl"
+          aria-label="logo"
+        >
+          <svg
+            width="95"
+            height="94"
+            viewBox="0 0 95 94"
+            class="h-auto w-6 text-green-500"
+            fill="currentColor"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M96 0V47L48 94H0V47L48 0H96Z" />
+          </svg>
+
+          PolluSense
+        </a>
+        <!-- logo - end -->
+
+        <!-- nav - start -->
+        <nav class="hidden gap-12 lg:flex">
+          <a href="#" class="text-lg font-semibold text-green-500">Home</a>
+          <a
+            href="#"
+            class="text-lg font-semibold text-gray-600 transition duration-100 hover:text-green-500 active:text-green-700"
+            >Features</a
+          >
+          <a
+            href="#start-predict"
+            onclick="smoothScroll(event)"
+            class="text-lg font-semibold text-gray-600 transition duration-100 hover:text-green-500 active:text-green-700"
+            >Predict</a
+          >
+          <a
+            href="#"
+            class="text-lg font-semibold text-gray-600 transition duration-100 hover:text-green-500 active:text-green-700"
+            >About</a
+          >
+        </nav>
+        <!-- nav - end -->
+
+        <!-- buttons - start -->
+        <a
+          href="#"
+          class="hidden rounded-lg bg-gray-200 px-8 py-3 text-center text-sm font-semibold text-gray-500 outline-none ring-green-300 transition duration-100 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base lg:inline-block"
+          >Contact Us</a
+        >
+
+        <button
+          type="button"
+          class="inline-flex items-center gap-2 rounded-lg bg-gray-200 px-2.5 py-2 text-sm font-semibold text-gray-500 ring-green-300 hover:bg-gray-300 focus-visible:ring active:text-gray-700 md:text-base lg:hidden"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-6 w-6"
+            viewBox="0 0 20 20"
+            fill="currentColor"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M3 5a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zM3 10a1 1 0 011-1h6a1 1 0 110 2H4a1 1 0 01-1-1zM3 15a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z"
+              clip-rule="evenodd"
+            />
+          </svg>
+
+          Menu
+        </button>
+        <!-- buttons - end -->
+      </header>
+      </div>
+    <div class="bg-white py-6 sm:py-8 lg:py-12">
+        <div class="mx-auto max-w-screen-2xl px-4 md:px-8">
+          <!-- text - start -->
+          <div class="mb-10 md:mb-16">
+            <h2 class="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-6 lg:text-3xl">Air Quality Prediction Form</h2>
+          </div>
+          <!-- text - end -->
+      
+          <!-- form - start -->
+          <form  class="mx-auto grid max-w-screen-md gap-4 sm:grid-cols-2" action="{{ url_for('predict_datapoint') }}" method="POST">
+            <div>
+              <label for="COAQIValue" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">CO AQI Value<span>*</span></label>
+              <input name="COAQIValue" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" type="number" />
+            </div>
+            <div>
+              <label for="COAQICategory" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">CO AQI Category<span>*</span></label>
+              <select name="COAQICategory" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring">
+                <option value="0">Good</option>
+                <option value="1">Moderate</option>
+                <option value="2">Unhealthy</option>
+                <option value="3">Very Unhealthy</option>
+                <option value="4">Unhealthy for Sensitive Groups</option>
+                <option value="5">Hazardous</option>
+              </select>
+          </div>
+          
+            <div>
+                <label for="OzoneAQIValue" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Ozone AQI Value<span>*</span></label>
+                <input name="OzoneAQIValue" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" type="number" />
+            </div>
+            <div>
+                <label for="OzoneAQICategory" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">Ozone AQI Category<span>*</span></label>
+                <select name="OzoneAQICategory" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring">
+                  <option value="0">Good</option>
+                  <option value="1">Moderate</option>
+                  <option value="2">Unhealthy</option>
+                  <option value="3">Very Unhealthy</option>
+                  <option value="4">Unhealthy for Sensitive Groups</option>
+                  <option value="5">Hazardous</option>
+                </select>
+              </div>
+              <div>
+                <label for="NO2AQIValue" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">NO2 AQI Value<span>*</span></label>
+                <input name="NO2AQIValue" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" type="number" />
+              </div>
+              <div>
+                <label for="NO2AQICategory" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">NO2 AQI Category<span>*</span></label>
+                <select name="NO2AQICategory" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring">
+                  <option value="0">Good</option>
+                  <option value="1">Moderate</option>
+                  <option value="2">Unhealthy</option>
+                  <option value="3">Very Unhealthy</option>
+                  <option value="4">Unhealthy for Sensitive Groups</option>
+                  <option value="5">Hazardous</option>
+                </select>
+              </div>
+              <div>
+                <label for="PM25AQIValue" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">PM2.5 AQI Value<span>*</span></label>
+                <input name="PM25AQIValue" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring" type="number" />
+              </div>
+              <div>
+                <label for="PM25AQICategory" class="mb-2 inline-block text-sm text-gray-800 sm:text-base">PM2.5 AQI Category<span>*</span></label>
+                    <select name="PM25AQICategory" class="w-full rounded border bg-gray-50 px-3 py-2 text-gray-800 outline-none ring-indigo-300 transition duration-100 focus:ring">
+                        <option value="4">Good</option>
+                        <option value="0">Moderate</option>
+                        <option value="3">Unhealthy</option>
+                        <option value="5">Very Unhealthy</option>
+                        <option value="2">Unhealthy for Sensitive Groups</option>
+                        <option value="1">Hazardous</option>
+                </select>
+              </div>
+              
+              
+    
+              
+              
+              <div class="flex justify-center col-span-2"> <!-- Centered between columns -->
+                <button type="submit" class="inline-block rounded-lg bg-indigo-500 px-8 py-3 text-center text-sm font-semibold text-white outline-none ring-indigo-300 transition duration-100 hover:bg-indigo-600 focus-visible:ring active:bg-indigo-700 md:text-base">Predict</button>
+              </div>
+          </form>
+          <br>
+          <!-- form - end -->
+          {% if prediction_value %}
+          <div class="mx-auto max-w-screen-md px-4 md:px-8">
+            <h3 class="text-center text-primary text-3xl text-red">Air Quality Index is {{ prediction_value }}</h3>
+            <br>
+            <h3 class="text-center text-secondary text-2xl" style="color: red; font-weight:600; font-size:40px">{{ prediction_text }}</h4>
+              <br>
+            <h4 class="text-center text-secondary text-2xl" style="color: green;">{{ prediction_text2 }}</h4>
+          {% endif %}      
+
+        </div>
+        
+        </div>
+      </div>
+      
+</body>
+</html>
